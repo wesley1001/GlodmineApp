@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="static/jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css">
+    <script src="static/jquery-1.8.3/jquery.min.js"></script>
+    <script src="static/jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div data-role="page" id="accountInfo">
+    <!--为了防止跳转到本页的时候js不加载,所以写到data-role下面-->
+    <link rel="stylesheet" href="static/jqm-datebox-1.3/jqm-datebox-1.3.0.min.css" />
+    <script src="static/jqm-datebox-1.3/jqm-datebox-1.3.0.core.min.js"></script>
+    <script src="static/jqm-datebox-1.3/jqm-datebox-1.3.0.mode.datebox.min.js"></script>
+    <script src="static/jqm-datebox-1.3/i18n/jquery.mobile.datebox.i18n.zh-CN.utf8.js"></script>
+    <!--校验js-->
+    <script src="static/jquery-validate-1.7/jquery.validate.min.js"></script>
+    <script src="js/accountInfo.js"></script>
+    <div data-role="header"  data-theme="b">
+        <a href="#" onclick="$.mobile.changePage('index.html',{transition: 'slidedown'});" data-role="button" data-icon="home">首页</a>
+        <h1>个人信息</h1>
+        <a href="#" onclick="$.mobile.changePage('index.html',{transition: 'slidedown'});" data-role="button" class="ui-btn-right" data-icon="back">返回</a>
+    </div>
+    <div data-role="content">
+        <form method="post" id="accountInfoForm" action="#">
+        <input type="text" name="niceName" id="niceName" placeholder="昵称">
+
+        <input type="text" name="mobilephone" id="mobilephone" placeholder="手机号" value="13683027377" disabled="true">
+        <input type="email" name="email" id="email" placeholder="邮箱" disabled="true">
+        <div class="ui-grid-a">
+            <div class="ui-block-a" style="border: 0px solid black;">
+                <!--<a href="#" data-role="button">收入维护</a>-->
+                <label for="male" >先生</label>
+                <input type="radio" checked="checked" name="gender" id="male" value="male">
+            </div>
+            <div class="ui-block-b">
+                <!--<a href="#" data-role="button">支出维护</a>-->
+                <label for="female">女士</label>
+                <input type="radio" name="gender" id="female" value="female">
+            </div>
+        </div>
+            <input type="text"  data-theme="b" data-role="datebox"  placeholder="生日" data-options='{"mode":"datebox"}'  name="startTime" id="startTime">
+            <input type="text" name="realName" id="realName" placeholder="真实姓名">
+<!--            <input type="password" name="fname" id="fname" placeholder="原始密码">
+            <input type="password" name="fname" id="fname" placeholder="新密码">
+            <input type="password" name="fname" id="fname" placeholder="确认密码">-->
+        <div data-role="controlgroup" data-type="horizontal" align="center">
+            <button class="saveBtn" type="submit">保存</button>
+        </div>
+       </form>
+    </div>
+
+    <div data-role="footer"   data-theme="b"  data-tap-toggle="false"  data-position="fixed" >
+        <h1>多维矩阵网络科技 @版权2015-2020</h1>
+     </div>
+</div>
+</body>
+</html>

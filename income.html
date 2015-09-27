@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="static/jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.css">
+    <script src="static/jquery-1.8.3/jquery.min.js"></script>
+    <script src="static/jquery.mobile-1.3.2/jquery.mobile-1.3.2.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div data-role="page" id="income">
+    <!--为了防止跳转到本页的时候js不加载,所以写到data-role下面-->
+    <link rel="stylesheet" href="static/jqm-datebox-1.3/jqm-datebox-1.3.0.min.css" />
+    <script src="static/jqm-datebox-1.3/jqm-datebox-1.3.0.core.min.js"></script>
+    <script src="static/jqm-datebox-1.3/jqm-datebox-1.3.0.mode.datebox.min.js"></script>
+    <script src="static/jqm-datebox-1.3/i18n/jquery.mobile.datebox.i18n.zh-CN.utf8.js"></script>
+    <!--校验js-->
+    <script src="static/jquery-validate-1.7/jquery.validate.min.js"></script>
+    <script src="js/income.js"></script>
+    <div data-role="header"  data-theme="b">
+        <a href="#" onclick="$.mobile.changePage('index.html',{transition: 'flip'});" data-role="button" data-icon="home">首页</a>
+        <h1>日常收入</h1>
+        <a href="#" onclick="$.mobile.changePage('index.html',{transition: 'flip'});" data-role="button" class="ui-btn-right" data-icon="back">返回</a>
+    </div>
+    <div data-role="content">
+        <form method="post" id="incomeForm" action="demoform.asp">
+            <input type="text"  data-theme="b" data-role="datebox"  placeholder="进账日期"  data-options='{"mode":"datebox"}'  name="startTime" id="startTime">
+        <div class="ui-grid-a">
+            <div class="ui-block-a" style="border: 0px solid black;">
+                <input type="text" name="imoney" id="imoney" placeholder="进账金额"/>
+            </div>
+            <div class="ui-block-b">
+                <select name="day" id="type" data-native-menu="false">
+                    <option value="0">类型</option>
+                    <option value="1">投资</option>
+                    <option value="2">借款</option>
+                    <option value="3">水电</option>
+                </select>
+            </div>
+        </div>
+
+        <input type="text" name="imemo" id="imemo" placeholder="备注说明"/>
+        <div data-role="controlgroup" data-type="horizontal" align="center">
+            <button class="loginBtn" type="submit">保存</button>
+            <button class="loginBtn" type="reset">重置</button>
+        </div>
+       </form>
+
+    </div>
+
+    <div data-role="footer"   data-theme="b"      data-position="fixed" data-theme="b" >
+        <h1>多维矩阵网络科技 @版权2015-2020</h1>
+     </div>
+</div>
+</body>
+</html>

@@ -12,7 +12,7 @@
 <div data-role="page" id="home" >
         <div data-role="header"  data-theme="b">
             <h1>聚宝盆理财工具</h1>
-            <a  href="#" id="js_Alogin" onclick="$.mobile.changePage('login.html',{transition: 'slideup'});"   data-role="button" class="ui-btn-right" data-icon="arrow-r"  data-rel="dialog">登录</a>
+            <!--<a  href="#" id="js_Alogin" onclick="$.mobile.changePage('login.html',{transition: 'slideup'});"   data-role="button" class="ui-btn-right" data-icon="arrow-r"  data-rel="dialog">登录</a>-->
         </div>
 
         <div data-role="content" >
@@ -25,7 +25,7 @@
                 <li><a href="#" data-ajax="false" onclick="$.mobile.changePage('incomeSearch.html',{transition: 'flow'});"  ><b><img  src="images/search.png" /></b><span>收入查询</span></a></li>
                 <li><a href="#" data-ajax="false" onclick="$.mobile.changePage('speedSearch.html',{transition: 'fade'});" ><b><img  src="images/search.png" /></b><span>支出查询</span></a></li>
                 <li><a href="#" data-ajax="false" onclick="$.mobile.changePage('accountInfo.html',{transition: 'slidedown'});" ><b><img  src="images/info.png" /></b><span>个人设置</span></a></li>
-                <li><a href="#" data-ajax="false" data-icon="alert" ><b><img  src="./images/exit.png" /></b><span>退出</span></a></li>
+                <li><a href="#" data-ajax="false" onclick="$.mobile.changePage('login.html',{transition: 'slideup'});" data-icon="alert" ><b><img  src="./images/exit.png" /></b><span>退出</span></a></li>
             </ul>
         </div>
 

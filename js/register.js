@@ -14,7 +14,14 @@ $("#register").on("pageshow",function(e){
         rules:{
             mobilephone:{
                 required:true,
-                mobile:true
+                mobile:true,
+                remote:{                                          //验证用户名是否存在
+                    type:"POST",
+                    url:"ifhasmob",             //servlet
+                    data:{
+                        mobilephone:function(){return $("#mobilephone").val();}
+                    }
+                }
             },
             imail:{
                 required:true,
@@ -33,7 +40,8 @@ $("#register").on("pageshow",function(e){
         messages:{
             mobilephone:{
                 required:"手机号码不能为空",
-                mobile:"请输入正确的手机号码"
+                mobile:"请输入正确的手机号码",
+                remote:"手机号已存在"
             },
             imail:{
                 required:"邮箱不能为空",

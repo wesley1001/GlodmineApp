@@ -9,22 +9,22 @@ $("#login").on("pageshow",function(e){
     },"请输入正确的手机号码");
     $("#loginForm").validate({
         rules:{
-            mobilephone:{
+            mobilePhone:{
                 required:true,
                 mobile:true
             },
-            pwd:{
+            password:{
                 required:true,
                 rangelength:[6,20]
             }
         },
         //自定义验证信息
         messages:{
-            mobilephone:{
+            mobilePhone:{
                 required:"手机号码不能为空",
                 mobile:"请输入正确的手机号码"
             },
-            pwd:{
+            password:{
                 required:"密码不能为空",
                 rangelength:$.validator.format("密码长度必须在 {0}-{1} 字符")
             }
@@ -38,9 +38,43 @@ $("#login").on("pageshow",function(e){
             }
         },
         submitHandler:function(form){
-            alert("submitted");
+            login();
         }
 
     });
 
 });
+function login(){
+    $.mobile.loading('show', {
+        text: '登录中...', //加载器中显示的文字
+        textVisible: true, //是否显示文字
+        theme: 'b',        //加载器主题样式a-e
+        textonly: false,   //是否只显示文字
+        html: ""           //要显示的html内容，如图片等
+    });
+    $.ajax({
+        type: 'POST',
+        url:Config.root+ "login" ,
+        data:$("#loginForm").serialize(),
+        dataType: "json",
+        crossDomain: true,
+        success:function(data){
+            if(data.flag){
+                var json=eval(data.msg)
+                Config.ifLogin=true;
+                $.mobile.changePage('index.html',{transition: 'flip'});
+                $.mobile.loading('hide');
+            }else{
+                $.mobile.loading('show', {
+                    text: data.msg, //加载器中显示的文字
+                    textVisible: true, //是否显示文字
+                    theme: 'b',        //加载器主题样式a-e
+                    textonly: true,   //是否只显示文字
+                    html: ""           //要显示的html内容，如图片等
+                });
+                setTimeout(function(){$.mobile.loading('hide')}, 1500);
+            }
+
+        }
+    });
+}

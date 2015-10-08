@@ -113,7 +113,9 @@ body .mainmenu li{
     border-radius:3px;
     overflow:hidden;
 }
-
+body .mainmenu li:hover{
+    background-color: #fff;
+}
 body .mainmenu li a{ display:block;  color:#FFF;   text-align:center }
 body .mainmenu li a b{
     display:block; height:80px;

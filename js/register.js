@@ -5,6 +5,10 @@ $("#register").on("pageshow",function(e){
     $("#pwd").focus(function(){
         $(".js-confirmPwd").show();
     });
+    $(".ui-block-b img").attr("src",Config.root+"/validcode.do");
+    $(".ui-block-b img").click(function(){
+        $(".ui-block-b img").attr("src",Config.root+"/validcode.do?"+Math.random());
+    });
     jQuery.validator.addMethod("mobile", function(value, element) {
         var length = value.length;
         var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;

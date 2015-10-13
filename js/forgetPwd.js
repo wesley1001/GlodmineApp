@@ -7,6 +7,10 @@ $("#forgetPwd1").on("pageshow",function(e){
         var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
         return this.optional(element) || (length == 11 && mobile.test(value));
     },"请输入正确的手机号码");
+    $(".ui-block-b img").attr("src",Config.root+"/validcode.do?"+Math.random());
+    $(".ui-block-b img").click(function(){
+        $(".ui-block-b img").attr("src",Config.root+"/validcode.do?"+Math.random());
+    });
     $.cookie('captcha','123');
     $("#code").val($.cookie("captcha"));
     $("#forgetPwd1Form").validate({

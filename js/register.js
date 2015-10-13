@@ -2,10 +2,10 @@
  * Created by Administrator on 2015-09-25.
  */
 $("#register").on("pageshow",function(e){
-    $("#pwd").focus(function(){
+    $("#password").focus(function(){
         $(".js-confirmPwd").show();
     });
-    $(".ui-block-b img").attr("src",Config.root+"/validcode.do");
+    $(".ui-block-b img").attr("src",Config.root+"/validcode.do?"+Math.random());
     $(".ui-block-b img").click(function(){
         $(".ui-block-b img").attr("src",Config.root+"/validcode.do?"+Math.random());
     });
@@ -16,33 +16,44 @@ $("#register").on("pageshow",function(e){
     },"请输入正确的手机号码");
     $("#registerForm").validate({
         rules:{
-            mobilephone:{
+            mobilePhone:{
                 required:true,
                 mobile:true,
                 remote:{                                          //验证用户名是否存在
-                    type:"POST",
-                    url:"ifhasmob",             //servlet
+                    type:"GET",
+                    url:Config.root+"ifhasmob",
+                    dataType: "json",
+                    crossDomain: true,//servlet
                     data:{
-                        mobilephone:function(){return $("#mobilephone").val();}
+                       mobilePhone:function(){return $("#mobilePhone").val();}
                     }
                 }
             },
             imail:{
                 required:true,
                 rangelength:[1,50],
-                email:true
+                email:true,
+                remote:{                                          //验证用户名是否存在
+                    type:"GET",
+                    url:Config.root+"ifhasemail",
+                    dataType: "json",
+                    crossDomain: true,//servlet
+                    data:{
+                        imail:function(){return $("#imail").val();}
+                    }
+                }
             },
-            pwd:{
+            password:{
                 required:true,
                 rangelength:[6,20]
             },
             confirmPwd:{
-                equalTo:"#pwd"
+                equalTo:"#password"
             }
         },
         //自定义验证信息
         messages:{
-            mobilephone:{
+            mobilePhone:{
                 required:"手机号码不能为空",
                 mobile:"请输入正确的手机号码",
                 remote:"手机号已存在"
@@ -50,9 +61,10 @@ $("#register").on("pageshow",function(e){
             imail:{
                 required:"邮箱不能为空",
                 rangelength:$.validator.format("输入的范围在 {0}-{1} 之间的字符."),
-                email:"邮箱格式不正确"
+                email:"邮箱格式不正确",
+                remote:"邮箱已存在"
             },
-            pwd:{
+            password:{
                 required:"密码不能为空",
                 rangelength:$.validator.format("密码长度必须在 {0}-{1} 字符.")
             },
@@ -70,7 +82,32 @@ $("#register").on("pageshow",function(e){
             }
         },
         submitHandler:function(form){
-            alert("submitted");
+            $.mobile.loading('show', {
+                text: '注册中...', //加载器中显示的文字
+                textVisible: true, //是否显示文字
+                theme: 'b',        //加载器主题样式a-e
+                textonly: false,   //是否只显示文字
+                html: ""           //要显示的html内容，如图片等
+            });
+            $.ajax({
+                type: 'GET',
+                url:Config.root+ "register" ,
+                data:$("#registerForm").serialize(),
+                dataType: "json",
+                crossDomain: true,
+                success:function(data){
+                    $.mobile.loading('show', {
+                        text: data.msg, //加载器中显示的文字
+                        textVisible: true, //是否显示文字
+                        theme: 'b',        //加载器主题样式a-e
+                        textonly: true,   //是否只显示文字
+                        html: ""           //要显示的html内容，如图片等
+                    });
+                    setTimeout(function(){$.mobile.loading('hide')}, 1500);
+                    $("#registerForm")[0].reset();
+                    $.mobile.changePage(Config.login,{transition: 'flip'});
+                }
+            });
         }
     });
 

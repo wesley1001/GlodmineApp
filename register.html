@@ -12,6 +12,7 @@
 <body>
 <div data-role="page" id="register">
     <script src="static/jquery-validate-1.7/jquery.validate.min.js"></script>
+    <script src="static/jquery-1.8.3/jquery.cookie.js"></script>
     <script src="js/register.js"></script>
     <div data-role="header" data-theme="b">
         <h1>用户注册</h1>
@@ -20,7 +21,7 @@
 
     <div data-role="content">
         <form method="post" id="registerForm" action="demoform.asp">
-            <input type="text" name="mobilephone" id="mobilephone" placeholder="手机号">
+            <input type="text" name="mobilePhone" id="mobilePhone" placeholder="手机号">
             <div class="ui-grid-a">
                 <div class="ui-block-a" style="border: 0px solid black;">
                     <input type="text" name="validateCode" id="validateCode" placeholder="验证码">
@@ -36,7 +37,7 @@
                 </div>
             </div>
             <input type="email" name="imail"  id="imail" placeholder="邮箱"/><span id="erroLabel"></span>
-            <input type="password" name="pwd"  id="pwd" placeholder="密码"  />
+            <input type="password" name="password"  id="password" placeholder="密码"  />
             <div class="js-confirmPwd fn-hide "><input type="password" id="confirmPwd" name="confirmPwd" placeholder="确认密码" /></div>
             <button class="regBtn" type="submit">注册</button>
         </form>
